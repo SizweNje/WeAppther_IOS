@@ -77,8 +77,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb7-Uo-3Pe">
-                                <rect key="frame" x="103" y="832" width="212" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb7-Uo-3Pe">
+                                <rect key="frame" x="20" y="832" width="374" height="30"/>
                                 <state key="normal" title="VIEW FULL WEEKS FORECAST"/>
                                 <connections>
                                     <segue destination="gBz-ak-YKd" kind="show" id="V9L-Qh-Mhd"/>

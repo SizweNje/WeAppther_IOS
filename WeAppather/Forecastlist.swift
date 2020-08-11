@@ -104,6 +104,8 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         var temp_minl :Double = 0.0
         var temp_maxl :Double = 0.0
         var dt1 :Int64 = 0
+            
+            var pos:Int = 0
         
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
@@ -113,16 +115,18 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
                         if let dailyForecasts = json["daily"] as? [ [String:Any]] {
-                            print(dailyForecasts[2]["wind_speed"])
+                            for dataPoint in dailyForecasts {
+                                pos = pos+1
+                            print(dailyForecasts[pos-1]["wind_speed"])
                             
                             
-                            dt1 = dailyForecasts[0]["dt"]as! Int64
-                            uvil = dailyForecasts[0]["uvi"]as! Double
-                            huml = dailyForecasts[0]["humidity"]as! Int
-                            speedl = dailyForecasts[0]["wind_speed"]as! Double
-                            degl = dailyForecasts[0]["wind_deg"]as! Int
+                            dt1 = dailyForecasts[pos-1]["dt"]as! Int64
+                            uvil = dailyForecasts[pos-1]["uvi"]as! Double
+                            huml = dailyForecasts[pos-1]["humidity"]as! Int
+                            speedl = dailyForecasts[pos-1]["wind_speed"]as! Double
+                            degl = dailyForecasts[pos-1]["wind_deg"]as! Int
                             
-                            if let dailyTemp = dailyForecasts[0]["temp"] as? [String:Any] {
+                            if let dailyTemp = dailyForecasts[pos-1]["temp"] as? [String:Any] {
                                 //print(dailyTemp["day"]as! Double)
                                 
                                 templ = dailyTemp["day"]as! Double
@@ -132,7 +136,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                             
                             }
                             
-                            if let dailyData = dailyForecasts[0]["weather"] as? [[String:Any]] {
+                            if let dailyData = dailyForecasts[pos-1]["weather"] as? [[String:Any]] {
                                 //print(dailyData[0]["main"]as! String)
                                 mainl = dailyData[0]["main"]as! String
                                 iconl = dailyData[0]["icon"]as! String
@@ -143,11 +147,8 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                                 tempForecasts.append(f)
                                 
                                 print("sucess list load")
+                                print(String(pos))
                                 
-                                for dataPoint in dailyData {
-                                    if let weatherObject = try? Weather(json: dataPoint) {
-                                        forecastArray.append(weatherObject)
-                                    }
                                
                             }
                             
@@ -156,6 +157,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                             
                         }
                         
+                    }
                     }
                     
                    
@@ -166,6 +168,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                     print(error.localizedDescription)
                 }
                 
+                print(tempForecasts[2].temp)
                 
             }
             
