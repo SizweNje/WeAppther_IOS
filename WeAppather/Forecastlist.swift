@@ -31,10 +31,6 @@ class ForecastList: UIViewController {
         print("Looking for location for forecast list")
         
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-
         
     }
     
@@ -78,14 +74,13 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         //get the current temp values
         //getcurrent(withurl_link: current_url)
         
-        forcastDay = createArray(withurl_link: current_url)
-        
+        createArray(withurl_link: current_url)
         
         
         
     }
     
-        func createArray(withurl_link url_link:String) ->[ForcastDay]{
+        func createArray(withurl_link url_link:String) /*->[ForcastDay]*/{
             
         var tempForecasts: [ForcastDay] = []
             
@@ -94,7 +89,6 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         
         //create default variables
         var templ : Double = 0.0
-        var uvil : Double = 0.0
         var huml : Int = 0
         var speedl :Double = 0.0
         var degl : Int = 0
@@ -103,6 +97,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         var descl :String = ""
         var temp_minl :Double = 0.0
         var temp_maxl :Double = 0.0
+            var uvil :Double = 0.0
         var dt1 :Int64 = 0
             
             var pos:Int = 0
@@ -115,18 +110,18 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
                         if let dailyForecasts = json["daily"] as? [ [String:Any]] {
-                            for dataPoint in dailyForecasts {
-                                pos = pos+1
-                            print(dailyForecasts[pos-1]["wind_speed"])
+                            for _ in dailyForecasts {
+                                
+                               // print(dailyForecasts[pos-1]["wind_speed"] ?? <#default value#>)
                             
                             
-                            dt1 = dailyForecasts[pos-1]["dt"]as! Int64
-                            uvil = dailyForecasts[pos-1]["uvi"]as! Double
-                            huml = dailyForecasts[pos-1]["humidity"]as! Int
-                            speedl = dailyForecasts[pos-1]["wind_speed"]as! Double
-                            degl = dailyForecasts[pos-1]["wind_deg"]as! Int
+                            dt1 = dailyForecasts[pos]["dt"]as! Int64
+                            uvil = dailyForecasts[pos]["uvi"]as! Double
+                            huml = dailyForecasts[pos]["humidity"]as! Int
+                            speedl = dailyForecasts[pos]["wind_speed"]as! Double
+                            degl = dailyForecasts[pos]["wind_deg"]as! Int
                             
-                            if let dailyTemp = dailyForecasts[pos-1]["temp"] as? [String:Any] {
+                            if let dailyTemp = dailyForecasts[pos]["temp"] as? [String:Any] {
                                 //print(dailyTemp["day"]as! Double)
                                 
                                 templ = dailyTemp["day"]as! Double
@@ -136,7 +131,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                             
                             }
                             
-                            if let dailyData = dailyForecasts[pos-1]["weather"] as? [[String:Any]] {
+                            if let dailyData = dailyForecasts[pos]["weather"] as? [[String:Any]] {
                                 //print(dailyData[0]["main"]as! String)
                                 mainl = dailyData[0]["main"]as! String
                                 iconl = dailyData[0]["icon"]as! String
@@ -144,10 +139,16 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                                 
                                 let f = ForcastDay(main: mainl,description: descl,icon: iconl,temp: templ,temp_min: temp_minl,temp_max: temp_maxl,pressure: "",humidity: huml,wind: speedl,location: "",direction: degl,datestamp : dt1)
                                 
-                                tempForecasts.append(f)
+                               
+                                self.forcastDay.append(f)
+                                print(self.forcastDay.count)
+                                
                                 
                                 print("sucess list load")
                                 print(String(pos))
+                                //print(tempForecasts[pos])
+                                
+                                pos = pos+1
                                 
                                
                             }
@@ -164,11 +165,17 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                     
                     print("sucess list done")
                    
+                   
                 }catch {
                     print(error.localizedDescription)
                 }
                 
-                print(tempForecasts[2].temp)
+                //print(tempForecasts[2].temp)
+                
+                OperationQueue.main.addOperation {
+                    self.tableView.reloadData()
+                    print("reloading data")
+                }
                 
             }
             
@@ -178,12 +185,15 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         task.resume()
             
             //print(tempForecasts[0])
+            print("temp array length: "+String(tempForecasts.count))
+            //return tempForecasts
             
-            return tempForecasts
+            
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("array length: "+String(forcastDay.count))
         return forcastDay.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,7 +201,21 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForeCastCell") as! ForeCastCell
         
-        cell.setForecast(forcastday: forecast)
+        //cell.setForecast(forcastday: forecast)
+        cell.lblday.text = String(forecast.datestamp)
+        cell.lblmaxtemp.text = String(format: "%.0f",forecast.temp_max)
+        cell.lblmintemo.text = String(format: "%.0f",forecast.temp_min)
+        cell.lbldescription.text = forecast.description
+        
+        let url = URL(string: "https://openweathermap.org/img/wn/"+forecast.icon+"@4x.png")
+        
+        
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        DispatchQueue.main.async {
+            cell.imageicon.image = UIImage(data: data!)
+        }
+        
+        print("cell load data"+String(forecast.temp_max) )
         
         return cell
         

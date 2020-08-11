@@ -18,12 +18,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1024" translatesAutoresizingMaskIntoConstraints="NO" id="Mcs-Hy-0q9">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatherapp_nasa_font-1" translatesAutoresizingMaskIntoConstraints="NO" id="TS5-0T-t2w">
+                                <rect key="frame" x="107" y="818" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="9XT-ls-tbA"/>
+                                    <constraint firstAttribute="height" constant="30" id="mAk-dy-yBj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1024" translatesAutoresizingMaskIntoConstraints="NO" id="Mcs-Hy-0q9">
+                                <rect key="frame" x="82" y="323" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="MmJ-Bt-GG6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="QuJ-a2-pPW"/>
+                                    <constraint firstAttribute="height" constant="250" id="icM-bs-a9q"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="qDC-eZ-3hY"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mcs-Hy-0q9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8Lz-yH-wCO"/>
+                            <constraint firstItem="Mcs-Hy-0q9" firstAttribute="centerX" secondItem="TS5-0T-t2w" secondAttribute="centerX" id="Bxd-Bp-Hv8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TS5-0T-t2w" secondAttribute="bottom" constant="14" id="LDq-0P-yRH"/>
+                            <constraint firstItem="Mcs-Hy-0q9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="V4P-P9-e9e"/>
+                            <constraint firstItem="TS5-0T-t2w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="arK-to-S0i"/>
+                            <constraint firstItem="TS5-0T-t2w" firstAttribute="top" secondItem="Mcs-Hy-0q9" secondAttribute="bottom" constant="245" id="lnB-1P-yzj"/>
+                            <constraint firstItem="Mcs-Hy-0q9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yyy-SY-sCv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -34,5 +55,6 @@
     </scenes>
     <resources>
         <image name="1024" width="1024" height="1024"/>
+        <image name="weatherapp_nasa_font-1" width="777" height="109"/>
     </resources>
 </document>

@@ -2,8 +2,8 @@
 //  ForeCastCell.swift
 //  WeAppather
 //
-//  Created by Kenny Lepule on 2020/08/11.
-//  Copyright © 2020 SizweNJw. All rights reserved.
+//  Created by Thembisile Sizwe Mngadi on 2020/08/11.
+//  Copyright © 2020 SizweNje. All rights reserved.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class ForeCastCell: UITableViewCell {
         lblday.text = String(forcastday.datestamp)
         lblmaxtemp.text = String(forcastday.temp_max)
         lblmintemo.text = String(forcastday.temp_min)
-        lbldescription.text = forcastday.description
+        lbldescription.text =  "Hello there" //forcastday.description
         
         let url = URL(string: "https://openweathermap.org/img/wn/"+forcastday.icon+"@4x.png")
         
