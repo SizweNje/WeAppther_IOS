@@ -14,7 +14,9 @@
 		B34B28B724E2033500BEAB44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34B28B524E2033500BEAB44 /* LaunchScreen.storyboard */; };
 		B34B28C224E2033500BEAB44 /* WeAppatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B28C124E2033500BEAB44 /* WeAppatherTests.swift */; };
 		B34B28CD24E2033500BEAB44 /* WeAppatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B28CC24E2033500BEAB44 /* WeAppatherUITests.swift */; };
-		B3C6A0E124E227E1006C7FC8 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0E024E227E1006C7FC8 /* Forecast.swift */; };
+		B3C6A0E724E26E39006C7FC8 /* ForecastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */; };
+		B3C6A0E924E271D7006C7FC8 /* ForeCastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */; };
+		B3C6A0EB24E27327006C7FC8 /* ForecastDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +50,9 @@
 		B34B28C824E2033500BEAB44 /* WeAppatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeAppatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34B28CC24E2033500BEAB44 /* WeAppatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeAppatherUITests.swift; sourceTree = "<group>"; };
 		B34B28CE24E2033500BEAB44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B3C6A0E024E227E1006C7FC8 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastList.swift; sourceTree = "<group>"; };
+		B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeCastCell.swift; sourceTree = "<group>"; };
+		B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				B34B28AC24E2033100BEAB44 /* AppDelegate.swift */,
-				B3C6A0E024E227E1006C7FC8 /* Forecast.swift */,
 				B34B28AE24E2033100BEAB44 /* ViewController.swift */,
+				B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */,
 				B34B28B024E2033100BEAB44 /* Main.storyboard */,
+				B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */,
+				B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */,
 				B34B28B324E2033500BEAB44 /* Assets.xcassets */,
 				B34B28B524E2033500BEAB44 /* LaunchScreen.storyboard */,
 				B34B28B824E2033500BEAB44 /* Info.plist */,
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C6A0E924E271D7006C7FC8 /* ForeCastCell.swift in Sources */,
 				B34B28AF24E2033100BEAB44 /* ViewController.swift in Sources */,
-				B3C6A0E124E227E1006C7FC8 /* Forecast.swift in Sources */,
+				B3C6A0E724E26E39006C7FC8 /* ForecastList.swift in Sources */,
 				B34B28AD24E2033100BEAB44 /* AppDelegate.swift in Sources */,
+				B3C6A0EB24E27327006C7FC8 /* ForecastDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

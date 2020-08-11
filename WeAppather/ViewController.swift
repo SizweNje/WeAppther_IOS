@@ -33,6 +33,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblwind: UILabel!
     @IBOutlet weak var lblhum: UILabel!
     @IBOutlet weak var imageIcon: UIImageView!
+    @IBOutlet weak var lblLocation: UILabel!
+    @IBOutlet weak var lblDateTime: UILabel!
     
     
     //create var for long anf lat
@@ -72,7 +74,37 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        
+        
+        print("locations = \(locValue.latitude) \(locValue.longitude))")
+        
+        if let loc = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude) as? CLLocation {
+            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) in
+                if let placemark = placemarks?[0]  {
+                    //let lat = String(format: "%.04f", (placemark.location?.coordinate.longitude ?? 0.0)!)
+                    //let lon = String(format: "%.04f", (placemark.location?.coordinate.latitude ?? 0.0)!)
+                    let name = placemark.name!
+                    let country = placemark.country!
+                    let region = placemark.administrativeArea!
+                    //print("\(lat),\(lon)\n\(name),\(region) \(country)")
+                    print("\(name),\(region)")
+                    self.lblLocation.text = "\(name),\(region)"
+                }
+            })
+        }
+        
+        
+        let now = Date()
+        
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        self.lblDateTime.text = formatter.string(from: now)
+        //let dateString = formatter.string(from: now)
         //lblLocation.text = "latitude = \(locValue.latitude), longitude = \(locValue.longitude)"
         
         //assign current location to variables
@@ -141,8 +173,10 @@ extension ViewController: CLLocationManagerDelegate {
                         //self.lblLocation.text = String(templ)
                         
                         self.lbldesc.text = descl
-                        self.lbltemp.text = String(templ)
-                        self.lblwind.text = String(speedl)
+                        self.lbltemp.text = String(format: "%.0f",templ)+"\u{00B0}"
+                        
+                        
+                        self.lblwind.text = String(format: "%.0f",speedl)
                         self.lblhum.text = String(huml)
                         
                         let url = URL(string: "https://openweathermap.org/img/wn/"+iconl+"@4x.png")
