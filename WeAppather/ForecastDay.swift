@@ -22,9 +22,9 @@ class  ForcastDay  {
     var wind: Double
     var location: String
     var direction: Int
-    var datestamp : Int64
+    var datestamp : Double
     
-    init(main: String,description: String,icon: String,temp: Double,temp_min: Double,temp_max: Double,pressure: String,humidity: Int,wind: Double,location: String,direction: Int,datestamp : Int64){
+    init(main: String,description: String,icon: String,temp: Double,temp_min: Double,temp_max: Double,pressure: String,humidity: Int,wind: Double,location: String,direction: Int,datestamp : Double){
         self.main = main
         self.description = description
         self.icon = icon

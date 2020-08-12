@@ -17,6 +17,7 @@
 		B3C6A0E724E26E39006C7FC8 /* ForecastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */; };
 		B3C6A0E924E271D7006C7FC8 /* ForeCastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */; };
 		B3C6A0EB24E27327006C7FC8 /* ForecastDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */; };
+		B3C6A0ED24E2F7F8006C7FC8 /* DetailForeCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C6A0EC24E2F7F8006C7FC8 /* DetailForeCastViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastList.swift; sourceTree = "<group>"; };
 		B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeCastCell.swift; sourceTree = "<group>"; };
 		B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDay.swift; sourceTree = "<group>"; };
+		B3C6A0EC24E2F7F8006C7FC8 /* DetailForeCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailForeCastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				B34B28AE24E2033100BEAB44 /* ViewController.swift */,
 				B3C6A0E624E26E39006C7FC8 /* ForecastList.swift */,
 				B34B28B024E2033100BEAB44 /* Main.storyboard */,
+				B3C6A0EC24E2F7F8006C7FC8 /* DetailForeCastViewController.swift */,
 				B3C6A0E824E271D7006C7FC8 /* ForeCastCell.swift */,
 				B3C6A0EA24E27327006C7FC8 /* ForecastDay.swift */,
 				B34B28B324E2033500BEAB44 /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 				B34B28AF24E2033100BEAB44 /* ViewController.swift in Sources */,
 				B3C6A0E724E26E39006C7FC8 /* ForecastList.swift in Sources */,
 				B34B28AD24E2033100BEAB44 /* AppDelegate.swift in Sources */,
+				B3C6A0ED24E2F7F8006C7FC8 /* DetailForeCastViewController.swift in Sources */,
 				B3C6A0EB24E27327006C7FC8 /* ForecastDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,14 +2,14 @@
 //  AppDelegate.swift
 //  WeAppather
 //
-//  Created by Thembisile Sizwe Mngadi on 2020/08/11.
-//  Copyright © 2020 SizweNje. All rights reserved.
+//  Created by Kenny Lepule on 2020/08/11.
+//  Copyright © 2020 SizweNJw. All rights reserved.
 //
 
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+    class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 

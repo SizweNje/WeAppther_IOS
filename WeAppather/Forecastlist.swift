@@ -98,7 +98,7 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         var temp_minl :Double = 0.0
         var temp_maxl :Double = 0.0
             var uvil :Double = 0.0
-        var dt1 :Int64 = 0
+        var dt1 :Double = 0
             
             var pos:Int = 0
         
@@ -113,9 +113,9 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
                             for _ in dailyForecasts {
                                 
                                // print(dailyForecasts[pos-1]["wind_speed"] ?? <#default value#>)
+                            print(dailyForecasts[pos]["dt"])
                             
-                            
-                            dt1 = dailyForecasts[pos]["dt"]as! Int64
+                            dt1 = dailyForecasts[pos]["dt"]as! Double
                             uvil = dailyForecasts[pos]["uvi"]as! Double
                             huml = dailyForecasts[pos]["humidity"]as! Int
                             speedl = dailyForecasts[pos]["wind_speed"]as! Double
@@ -201,10 +201,14 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForeCastCell") as! ForeCastCell
         
+        
+        var myMilliseconds: UnixTime = UnixTime(Double(forecast.datestamp))
+        print(myMilliseconds.toDay)
+        
         //cell.setForecast(forcastday: forecast)
-        cell.lblday.text = String(forecast.datestamp)
-        cell.lblmaxtemp.text = String(format: "%.0f",forecast.temp_max)
-        cell.lblmintemo.text = String(format: "%.0f",forecast.temp_min)
+        cell.lblday.text = myMilliseconds.toDay
+        cell.lblmaxtemp.text = String(format: "%.0f",forecast.temp_max)+"\u{00B0}"
+        cell.lblmintemo.text = String(format: "%.0f",forecast.temp_min)+"\u{00B0}"
         cell.lbldescription.text = forecast.description
         
         let url = URL(string: "https://openweathermap.org/img/wn/"+forecast.icon+"@4x.png")
@@ -221,8 +225,53 @@ extension ForecastList: CLLocationManagerDelegate, UITableViewDataSource, UITabl
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let forecast = forcastDay[indexPath.row]
+        
+        self.performSegue(withIdentifier: "segueIdentifier", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+        if segue.identifier == "segueIdentifier" {
+        let selectedRow = sender as? Int
+        
+            var myMilliseconds: UnixTime = UnixTime(forcastDay[selectedRow!].datestamp)
+            print(myMilliseconds.toDay)
+        
+        var vc = segue.destination as! DetailForeCastViewController
+        vc.day = myMilliseconds.toDay
+        vc.icon = forcastDay[selectedRow!].icon
+        vc.desc =  forcastDay[selectedRow!].description
+        vc.hum =  String(forcastDay[selectedRow!].humidity)+"\u{FF05}"
+        vc.wind =  String(forcastDay[selectedRow!].wind)
+        vc.temp = String(forcastDay[selectedRow!].temp)+"\u{00B0}"
+        }else{
+            self.presentingViewController?.dismiss(animated: false, completion: nil)
+        }
+    }
+  
+    
     
 }
 
+typealias UnixTime = Int
 
-
+extension UnixTime {
+    private func formatType(form: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = form
+        return dateFormatter
+    }
+    var dateFull: Date {
+        return Date(timeIntervalSince1970: Double(self))
+    }
+    var toHour: String {
+        return formatType(form: "HH:mm").string(from: dateFull)
+    }
+    var toDay: String {
+        return formatType(form: "EEEE").string(from: dateFull)
+    }
+}

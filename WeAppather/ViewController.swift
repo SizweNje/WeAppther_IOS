@@ -177,7 +177,7 @@ extension ViewController: CLLocationManagerDelegate {
                         
                         
                         self.lblwind.text = String(format: "%.0f",speedl)
-                        self.lblhum.text = String(huml)
+                        self.lblhum.text = String(huml)+"\u{FF05}"
                         
                         let url = URL(string: "https://openweathermap.org/img/wn/"+iconl+"@4x.png")
                         

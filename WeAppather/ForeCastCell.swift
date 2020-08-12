@@ -18,8 +18,8 @@ class ForeCastCell: UITableViewCell {
     
     func setForecast(forcastday :ForcastDay){
         lblday.text = String(forcastday.datestamp)
-        lblmaxtemp.text = String(forcastday.temp_max)
-        lblmintemo.text = String(forcastday.temp_min)
+        lblmaxtemp.text = String(forcastday.temp_max)+"\u{00B0}"
+        lblmintemo.text = String(forcastday.temp_min)+"\u{00B0}"
         lbldescription.text =  "Hello there" //forcastday.description
         
         let url = URL(string: "https://openweathermap.org/img/wn/"+forcastday.icon+"@4x.png")
