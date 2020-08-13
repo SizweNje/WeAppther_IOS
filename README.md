@@ -1,9 +1,16 @@
-# WeAppther_IOS
+# WeAppther - IOS (Swift)
 
-If you would like also to view or recreate the application using kotlin(Androi d), I have mentioned the link bellow:
-https://github.com/SizweNje/WeAppther
+## Description 
+Create a weather app using the technologies & patterns that you feel best show your technical knowledge.
+Use the https://openweathermap.org/api to retrieve weather data to support the use cases below.
 
-Project Developer : Thembisile Sizwe Mngadi Development Duration : - 48hours
+## Application Goals:
+* List daily temperatures in your area
+* View weather details for a specific day chosen from the daily temperatures list.
+
+## Notes :
+Project Developer : Thembisile Sizwe Mngadi
+Development Duration : -+ 36 hours
 
 Personel Website : http://sizwenje.com
 
